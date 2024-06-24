@@ -5,6 +5,11 @@ description = "Backend logic implementation for https://github.com/gothinkster/r
 authors = ["Nik Sidnev <sidnev.nick@gmail.com>"]
 license = "MIT"
 
+[[tool.poetry.source]]
+name = "mirrors"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+priority = "default"
+
 [tool.poetry.dependencies]
 python = "^3.9"
 uvicorn = "^0.18.2"

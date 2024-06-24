@@ -5,13 +5,14 @@ ENV PYTHONUNBUFFERED 1
 EXPOSE 8000
 WORKDIR /app
 
+RUN sed -i "s@http://\(deb\|security\).debian.org@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends netcat && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY poetry.lock pyproject.toml ./
-RUN pip install poetry==1.1 && \
+COPY pyproject.toml ./
+RUN pip install poetry -i https://pypi.tuna.tsinghua.edu.cn/simple/ && \
     poetry config virtualenvs.in-project true && \
     poetry install --no-dev
 
